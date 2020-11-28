@@ -1,3 +1,7 @@
 :host ::ng-deep .card{
     background: indigo;
 }
+
+app-navbar{
+    width: 100%;
+}

@@ -29,9 +29,11 @@
             ],
             "styles": [
               "C:/Users/TarekMarzouk/Pencil/frontend/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "C:/Users/TarekMarzouk/Pencil/frontend/node_modules/medium-editor/dist/css/medium-editor.min.css",
+              "C:/Users/TarekMarzouk/Pencil/frontend/node_modules/medium-editor/dist/css/themes/bootstrap.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["C:/Users/TarekMarzouk/Pencil/frontend/node_modules/medium-editor/dist/js/medium-editor.min.js"]
           },
           "configurations": {
             "production": {

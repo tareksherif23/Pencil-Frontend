@@ -1,0 +1,11 @@
+<div>
+    <label for="input">Type name here: </label>
+    <input id="input" [(ngModel)]="name">
+  </div>
+  
+  <div #container>
+    <hello [name]="name"></hello>
+    <p>
+      Start editing to see some magic happen!
+    </p>
+  </div>
