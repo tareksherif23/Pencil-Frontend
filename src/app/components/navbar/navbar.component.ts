@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { LoginComponent } from '../login/login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
   isOpen: boolean = false
   isUser: boolean = false
 
-  constructor(public auth: AngularFireAuth) { }
+  constructor(public auth: AngularFireAuth,public router: Router) { }
   ngOnInit() {
     
     this.auth.user.subscribe(user=>{
@@ -27,7 +28,12 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
-    this.auth.signOut();
+    this.auth.signOut().then(()=>
+    this.router.navigate([''])).catch(
+      function(error) {
+    }); 
+  
+  
   }
 
 

@@ -5,16 +5,15 @@ import { AngularFireModule } from '@angular/fire';
 import {FormsModule} from '@angular/forms';
 import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { SignupinComponent } from './components/signupin/signupin.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CreateComponent } from './components/create/create.component';
 import { MeditComponent } from './components/medit/medit.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -33,13 +32,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   declarations: [
     AppComponent,
     HomeComponent,
-    SignupinComponent,
     NotfoundComponent,
-    SignupComponent,
     LoginComponent,
     NavbarComponent,
-    CreateComponent,
-    MeditComponent
+    MeditComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +54,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     }),
     FormsModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)
 
   ],

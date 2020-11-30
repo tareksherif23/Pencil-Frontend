@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import firebase from 'firebase/app';
+import {UsersService} from 'src/app/services/users.service'
+import {NotesService} from 'src/app/services/notes.service'
 
 @Component({
   selector: 'app-login',
@@ -11,26 +14,29 @@ import firebase from 'firebase/app';
 
 export class LoginComponent {
 
-  constructor(public auth: AngularFireAuth) {
+  constructor(public auth: AngularFireAuth,public router: Router,private us: UsersService,private ns: NotesService ) {
   }
+
+
   login() {
   var provider = new firebase.auth.GoogleAuthProvider()
-  firebase.auth().signInWithPopup(provider).then(function(result) {
+  this.auth.signInWithPopup(provider).then((result)=> {
     // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = (<any>result).credential.accessToken;
-    var user = result.user;
-    
-    console.log(`USER =  ${user?.displayName}   Token = ${token} `)
-  }).catch(function(error) {
-    // Handle Errors here.
-  
+    if(result.additionalUserInfo?.isNewUser)
+    {
+     this.us.addNewUser((<any>result).user.uid,(<any>result).user.displayName)
+    }
+    else{
+    this.ns.retNote((<any>result).user.uid)
+    }
+   // var token = (<any>result).credential.accessToken;
+   // console.log(`USER =  ${(<any>result).user.displayName}   UID = ${(<any>result).user.uid} `)
+  }).then(()=>{
+    this.router.navigate(['home'])}).catch(function(error) {
   });
 
-
-
+  
   }
-  logout() {
-    this.auth.signOut();
-  }
+  
 
 }
