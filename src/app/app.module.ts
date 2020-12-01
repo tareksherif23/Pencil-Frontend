@@ -7,19 +7,16 @@ import {firebase, firebaseui, FirebaseUIModule} from 'firebaseui-angular';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
-import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MeditComponent } from './components/medit/medit.component';
-import { LandingComponent } from './components/landing/landing.component';
+
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
   signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID
   ],
   tosUrl: '<your-tos-link>',
   privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
@@ -32,16 +29,17 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
   declarations: [
     AppComponent,
     HomeComponent,
-    NotfoundComponent,
-    LoginComponent,
     NavbarComponent,
-    MeditComponent,
-    LandingComponent
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyA-2ni31iOxYvw846wMJwMClqVSO5lmb6M",
       authDomain: "pencil-ba6b7.firebaseapp.com",
@@ -51,11 +49,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
       messagingSenderId: "483426535468",
       appId: "1:483426535468:web:376e4862874205cde36989",
       measurementId: "G-JGKCQVXDWJ"
-    }),
-    FormsModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
+    })
 
   ],
   providers: [],

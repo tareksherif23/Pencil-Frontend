@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import firebase from 'firebase/app';
 
 @Component({
   selector: 'app-navbar',
@@ -27,14 +27,21 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  login() {
+    var provider = new firebase.auth.GoogleAuthProvider()
+    this.auth.signInWithPopup(provider).then(()=> {
+      this.router.navigate(['home'])}).catch(function(error) {
+      });
+    }
+
   logout(){
     this.auth.signOut().then(()=>
     this.router.navigate([''])).catch(
       function(error) {
-    }); 
-  
-  
+    });  
   }
+
+
 
 
 }
